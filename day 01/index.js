@@ -52,7 +52,7 @@ gridButton.addEventListener("click", () => {
             count += 2;
             let col = document.createElement("div");
             col.classList.add("gridCol");
-            col.setAttribute("id",`gridCol${count}`);
+            col.setAttribute("id", `gridCol${count}`);
             col.addEventListener(events[deviceType].down, () => {
                 draw = true;
                 if (erase) {
@@ -84,7 +84,7 @@ gridButton.addEventListener("click", () => {
 });
 
 function checker(elementId) {
-    let gridColumns = document.querySelectorAll(".gridCol")
+    let gridColumns = document.querySelectorAll(".gridCol");
     gridColumns.forEach((element) => {
         if (elementId == element.id) {
             if (draw && !erase) {
