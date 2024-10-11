@@ -1,6 +1,6 @@
-let container =  document.querySelector(".container");
+let container = document.querySelector(".container");
 let gridButton = document.getElementById("submit-grid");
-let clearGirdButton = document.getElementById("clear-grid");
+let clearGridButton = document.getElementById("clear-grid");
 let gridWidth = document.getElementById("width-range");
 let gridHeight = document.getElementById("height-range");
 let colorButton = document.getElementById("color-input");
@@ -13,12 +13,12 @@ let events = {
     mouse: {
         down: "mousedown",
         move: "mousemove",
-        up: "mouseup",
+        up: "mouseup"
     },
     touch: {
         down: "touchstart",
-        move: "touchmove",
-        up: "touchend"
+        mobe: "touchmove",
+        up: "touchend",
     },
 };
 
@@ -43,16 +43,16 @@ isTouchDevice();
 gridButton.addEventListener("click", () => {
     container.innerHTML = "";
     let count = 0;
-    for (let i = 0; i < gridHeight.value; i ++) {
+    for (let i = 0; i < gridHeight.value; i++) {
         count += 2;
         let div = document.createElement("div");
-        div.classList.add("gridRow")
+        div.classList.add("gridRow");
 
-        for (let j = 0 ; j < gridWidth.value; j++) {
+        for (let j = 0; j < gridWidth.value; j++) {
             count += 2;
             let col = document.createElement("div");
             col.classList.add("gridCol");
-            col.setAttribute("id",`girdCol${count}`);
+            col.setAttribute("id",`gridCol${count}`);
             col.addEventListener(events[deviceType].down, () => {
                 draw = true;
                 if (erase) {
@@ -63,11 +63,11 @@ gridButton.addEventListener("click", () => {
             });
 
             col.addEventListener(events[deviceType].move, (e) => {
-                let elementId = document.elementsFromPoint(
+                let elementId = document.elementFromPoint(
                     !isTouchDevice() ? e.clientX : e.touches[0].clientX,
                     !isTouchDevice() ? e.clientY : e.touches[0].clientY,
                 ).id;
-                checker(elementId)
+                checker(elementId);
             });
 
             col.addEventListener(events[deviceType].up, () => {
@@ -96,7 +96,7 @@ function checker(elementId) {
     });
 }
 
-clearGirdButton.addEventListener("click", () => {
+clearGridButton.addEventListener("click", () => {
     container.innerHTML = "";
 });
 
@@ -106,14 +106,14 @@ eraseBtn.addEventListener("click", () => {
 
 paintBtn.addEventListener("click", () => {
     erase = false;
-})
+});
 
 gridWidth.addEventListener("input", () => {
     widthValue.innerHTML = gridWidth.value < 9 ? `0${gridWidth.value}` : gridWidth.value;
 });
 
 gridHeight.addEventListener("input", () => {
-    widthValue.innerHTML = gridHeight.value < 9 ? `0${gridHeight.value}` : gridHeight.value;
+    heightValue.innerHTML = gridHeight.value < 9 ? `0${gridHeight.value}` : gridHeight.value;
 });
 
 window.onload = () => {
