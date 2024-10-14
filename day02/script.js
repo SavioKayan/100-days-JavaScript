@@ -1,13 +1,14 @@
-let optionsButtons = document.querySelectorAll(".option-button")
-let advancedOptionButton = document.querySelectorAll(".adv-option-button")
-let fontName = document.getElementById("fontName")
-let fontSizeRef = document.getElementById("fontSize")
-let writingArea = document.getElementById("text-input")
-let linkButton = document.getElementById("createLink")
-let alignButtons = document.querySelectorAll(".align")
-let spacingButtons = document.querySelectorAll(".spacing")
-let formatButtons = document.querySelectorAll(".format")
-let scriptButtons = document.querySelectorAll(".script")
+
+let optionsButtons = document.querySelectorAll(".option-button");
+let advancedOptionButton = document.querySelectorAll(".adv-option-button");
+let fontName = document.getElementById("fontName");
+let fontSizeRef = document.getElementById("fontSize");
+let writingArea = document.getElementById("text-input");
+let linkButton = document.getElementById("createLink");
+let alignButtons = document.querySelectorAll(".align");
+let spacingButtons = document.querySelectorAll(".spacing");
+let formatButtons = document.querySelectorAll(".format");
+let scriptButtons = document.querySelectorAll(".script");
 
 let fontList = [
     "Arial",
@@ -29,11 +30,11 @@ const intializer = () => {
         let option = document.createElement("option");
         option.value = value;
         option.innerHTML = value;
-        fontName.appendChild(option1);
+        fontName.appendChild(option);
     });
 
     for (let i = 1; 1 <=  7; i++) {
-        let option = document.createElement(option);
+        let option = document.createElement("option");
         option.value = i;
         option.innerHTML = i;
         fontSizeRef.appendChild(option);
@@ -43,7 +44,7 @@ const intializer = () => {
 };
 
 const modifyText = (command, defaultUi, value) => {
-    document.execCommand(command,defaultUi,value);
+    document.execCommand(command,defaultUi, value);
 };
 
 optionsButtons.forEach((button) => {
@@ -52,7 +53,7 @@ optionsButtons.forEach((button) => {
     });
 });
 
-advancedOptionsButton.forEach((button) => {
+advancedOptionButton.forEach((button) => {
     button.addEventListener("change", () => {
         modifyText(button.id, false, button.value);
     });
@@ -64,7 +65,7 @@ linkButton.addEventListener("click", () => {
         modifyText(linkButton.id, false, userLink);
     } else {
         userLink = "http://" + userLink;
-        modifyText(linkButton.id, false, userLink)
+        modifyText(linkButton.id, false, userLink);
     }
 });
 
@@ -74,14 +75,14 @@ const highlighter = (className, needsRemoval) => {
             if (needsRemoval) {
                 let alreadyActive = false;
                 if (button.classList.contains("active")) {
-                    alreadyActive = true;   
+                    alreadyActive = true;
                 }
                 highlighterRemover(className);
                 if (!alreadyActive) {
                     button.classList.add("active");
                 }
             } else {
-                button.classList.toggle("active")
+                button.classList.toggle("active");
             }
         });
     });
